@@ -1,89 +1,89 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ROW 15 // ¶¨ÒåÆåÅÌµÄĞĞÊı
-#define COL 15 // ¶¨ÒåÆåÅÌµÄÁĞÊı
+#define ROW 15 // å®šä¹‰æ£‹ç›˜çš„è¡Œæ•°
+#define COL 15 // å®šä¹‰æ£‹ç›˜çš„åˆ—æ•°
 
-char board[ROW][COL];         // ¶¨ÒåÆåÅÌ
-int traversal[ROW][COL];      // ¶¨ÒåÆåÅÌ
-char players[2] = {'X', 'O'}; // Ä¬ÈÏX´ú±íºÚÆå£¬O´ú±í°×Æå
+char board[ROW][COL];         // å®šä¹‰æ£‹ç›˜
+int traversal[ROW][COL];      // å®šä¹‰æ£‹ç›˜
+char players[2] = {'X', 'O'}; // é»˜è®¤Xä»£è¡¨é»‘æ£‹ï¼ŒOä»£è¡¨ç™½æ£‹
 
-// ³õÊ¼»¯ÆåÅÌµÄº¯Êı
+// åˆå§‹åŒ–æ£‹ç›˜çš„å‡½æ•°
 void init()
 {
     for (int i = 0; i < ROW; i++)
     {
         for (int j = 0; j < COL; j++)
         {
-            board[i][j] = ' '; // ½«ÆåÅÌÉÏµÄÃ¿¸öÎ»ÖÃ¶¼³õÊ¼»¯Îª¿Õ¸ñ
+            board[i][j] = ' '; // å°†æ£‹ç›˜ä¸Šçš„æ¯ä¸ªä½ç½®éƒ½åˆå§‹åŒ–ä¸ºç©ºæ ¼
         }
     }
 }
 
-// ³õÊ¼»¯ÆåÅÌ±éÀúµÄº¯Êı
+// åˆå§‹åŒ–æ£‹ç›˜éå†çš„å‡½æ•°
 void initraversal()
 {
     for (int i = 0; i < ROW; i++)
     {
         for (int j = 0; j < COL; j++)
         {
-            traversal[i][j] = 0; // ½«ÆåÅÌÉÏµÄÃ¿¸öÎ»ÖÃ¶¼±ê¼ÇÎªÎ´±éÀú
+            traversal[i][j] = 0; // å°†æ£‹ç›˜ä¸Šçš„æ¯ä¸ªä½ç½®éƒ½æ ‡è®°ä¸ºæœªéå†
         }
     }
 }
 
-// Çå³ıÆåÅÌÉÏ±»±ê¼ÇÆå×ÓµÄº¯Êı
+// æ¸…é™¤æ£‹ç›˜ä¸Šè¢«æ ‡è®°æ£‹å­çš„å‡½æ•°
 void killtraversal()
 {
     for (int i = 0; i < ROW; i++)
     {
         for (int j = 0; j < COL; j++)
         {
-            if (traversal[i][j] == -1) // Èç¹û¸ÃÎ»ÖÃµÄÆå×Ó±»±ê¼ÇÎª±»°üÎ§
+            if (traversal[i][j] == -1) // å¦‚æœè¯¥ä½ç½®çš„æ£‹å­è¢«æ ‡è®°ä¸ºè¢«åŒ…å›´
             {
-                board[i][j] = ' ';   // ½«Æå×ÓÖØÖÃÎª¿Õ
-                traversal[i][j] = 0; // ½«¸ÃÎ»ÖÃµÄ±ê¼ÇÖØÖÃÎªÎ´±éÀú
+                board[i][j] = ' ';   // å°†æ£‹å­é‡ç½®ä¸ºç©º
+                traversal[i][j] = 0; // å°†è¯¥ä½ç½®çš„æ ‡è®°é‡ç½®ä¸ºæœªéå†
             }
         }
     }
-    printBoard(); // ´òÓ¡ÆåÅÌ
+    printBoard(); // æ‰“å°æ£‹ç›˜
 }
 
-// ´òÓ¡ÆåÅÌµÄº¯Êı
+// æ‰“å°æ£‹ç›˜çš„å‡½æ•°
 void printBoard()
 {
     system("cls");
-    printf("Î§Æå1.0£¨CÓïÑÔ°æ£©\n\n¹æÔò£ºÎ§Æå\nÌáÊ¾£ºÊäÈë t0 ½áÊø±¾ÅÌÓÎÏ·\n¸üĞÂ£º²âÊÔ\n\n\n");
+    printf("å›´æ£‹1.0ï¼ˆCè¯­è¨€ç‰ˆï¼‰\n\nè§„åˆ™ï¼šå›´æ£‹\næç¤ºï¼šè¾“å…¥ t0 ç»“æŸæœ¬ç›˜æ¸¸æˆ\næ›´æ–°ï¼šæµ‹è¯•\n\n\n");
     printf("   ");
     for (int i = 0; i < COL; i++)
     {
-        printf("%c|", 'A' + i); // ´òÓ¡ÁĞºÅ
+        printf("%c|", 'A' + i); // æ‰“å°åˆ—å·
     }
     printf("\n  _______________________________");
     printf("\n");
     for (int i = 0; i < ROW; i++)
     {
-        printf("%2d|", i); // ´òÓ¡ĞĞºÅ
+        printf("%2d|", i); // æ‰“å°è¡Œå·
         for (int j = 0; j < COL; j++)
         {
-            printf("%c ", board[i][j]); // ´òÓ¡ÆåÅÌÉÏµÄÆå×Ó
+            printf("%c ", board[i][j]); // æ‰“å°æ£‹ç›˜ä¸Šçš„æ£‹å­
         }
         printf("\n");
     }
 }
 
-// Âä×ÓµÄº¯Êı
+// è½å­çš„å‡½æ•°
 void makeMove(int row, int col, char player)
 {
-    board[row][col] = player; // ½«Æå×Ó·ÅÔÚÆåÅÌÉÏÖ¸¶¨µÄÎ»ÖÃ
+    board[row][col] = player; // å°†æ£‹å­æ”¾åœ¨æ£‹ç›˜ä¸ŠæŒ‡å®šçš„ä½ç½®
 }
 
-// ¼ì²éÊÇ·ñ±»°üÎ§
+// æ£€æŸ¥æ˜¯å¦è¢«åŒ…å›´
 int SurroundCount(int row, int col, int currentPlayer)
 {
-    traversal[row][col] = 1; // ½«µ±Ç°Î»ÖÃ±ê¼ÇÎªÒÑ±éÀú
+    traversal[row][col] = 1; // å°†å½“å‰ä½ç½®æ ‡è®°ä¸ºå·²éå†
 
-    // ÏòËÄ¸ö·½Ïò±éÀú
+    // å‘å››ä¸ªæ–¹å‘éå†
     int dx[] = {1, 0, -1, 0};
     int dy[] = {0, 1, 0, -1};
     for (int i = 0; i < 4; ++i)
@@ -93,30 +93,30 @@ int SurroundCount(int row, int col, int currentPlayer)
         {
             if (board[newRow][newCol] == ' ')
             {
-                return 0; // ÕÒµ½¿ÕÈ±£¬Î´±»°üÎ§
+                return 0; // æ‰¾åˆ°ç©ºç¼ºï¼Œæœªè¢«åŒ…å›´
             }
             else if (board[newRow][newCol] == players[currentPlayer] && traversal[newRow][newCol] == 0)
             {
                 if (SurroundCount(newRow, newCol, currentPlayer) == 0)
                 {
-                    return 0; // Èç¹ûÏàÁÚÆå×ÓÎ´±»°üÎ§£¬Ôòµ±Ç°Æå×ÓÒ²Î´±»°üÎ§
+                    return 0; // å¦‚æœç›¸é‚»æ£‹å­æœªè¢«åŒ…å›´ï¼Œåˆ™å½“å‰æ£‹å­ä¹Ÿæœªè¢«åŒ…å›´
                 }
             }
         }
     }
 
-    // Èç¹ûËÄ¸ö·½Ïò¶¼Ã»ÓĞ¿ÕÈ±£¬Ôòµ±Ç°Î»ÖÃ±»°üÎ§
-    traversal[row][col] = -1; // ±ê¼ÇÎª±»°üÎ§
+    // å¦‚æœå››ä¸ªæ–¹å‘éƒ½æ²¡æœ‰ç©ºç¼ºï¼Œåˆ™å½“å‰ä½ç½®è¢«åŒ…å›´
+    traversal[row][col] = -1; // æ ‡è®°ä¸ºè¢«åŒ…å›´
     return 1;
 }
 
-// ¼ì²éÊÇ·ñ°üÎ§
+// æ£€æŸ¥æ˜¯å¦åŒ…å›´
 int Surround(int row, int col, int currentPlayer)
 {
-    initraversal();                         // ³õÊ¼»¯ÆåÅÌ±éÀúµÄº¯Êı
-    int opponent = (currentPlayer + 1) % 2; // ¶ÔÊÖÆå×Ó
+    initraversal();                         // åˆå§‹åŒ–æ£‹ç›˜éå†çš„å‡½æ•°
+    int opponent = (currentPlayer + 1) % 2; // å¯¹æ‰‹æ£‹å­
 
-    // ÏòËÄ¸ö·½Ïò±éÀú
+    // å‘å››ä¸ªæ–¹å‘éå†
     int dx[] = {1, 0, -1, 0};
     int dy[] = {0, 1, 0, -1};
     for (int i = 0; i < 4; ++i)
@@ -127,22 +127,22 @@ int Surround(int row, int col, int currentPlayer)
         {
             if (SurroundCount(newRow, newCol, opponent) == 1)
             {
-                traversal[newRow][newCol] = -1; // ±ê¼Ç¶ÔÊÖÆå×ÓÎª±»°üÎ§
-                killtraversal();                // Çå³ı±»°üÎ§µÄÆå×Ó
+                traversal[newRow][newCol] = -1; // æ ‡è®°å¯¹æ‰‹æ£‹å­ä¸ºè¢«åŒ…å›´
+                killtraversal();                // æ¸…é™¤è¢«åŒ…å›´çš„æ£‹å­
                 if (checkWin(row, col, currentPlayer, 0))
                 {
-                    return 1; // Èç¹ûµ±Ç°Íæ¼ÒÊ¤Àû£¬·µ»Ø1
+                    return 1; // å¦‚æœå½“å‰ç©å®¶èƒœåˆ©ï¼Œè¿”å›1
                 }
             }
         }
     }
-    return 0; // Èç¹ûÃ»ÓĞ¼ì²âµ½°üÎ§£¬·µ»Ø0
+    return 0; // å¦‚æœæ²¡æœ‰æ£€æµ‹åˆ°åŒ…å›´ï¼Œè¿”å›0
 }
 
-// ¼ì²éÊÇ·ñÓ®ÆåµÄº¯Êı
+// æ£€æŸ¥æ˜¯å¦èµ¢æ£‹çš„å‡½æ•°
 int checkWin(int row, int col, int currentPlayer, int exemptFromDeath)
 {
-    Surround(row, col, currentPlayer); // Çå³ı±»°üÎ§µÄÆå×Ó
+    Surround(row, col, currentPlayer); // æ¸…é™¤è¢«åŒ…å›´çš„æ£‹å­
 
     int count = 1;
     for (int i = 0; i < ROW && exemptFromDeath == 0; i++)
@@ -157,66 +157,62 @@ int checkWin(int row, int col, int currentPlayer, int exemptFromDeath)
     }
     if (count)
     {
-        return 0;
-        if (Surround(row, col, currentPlayer)) // ¼ÌĞøÅĞ¶ÏÊÇ·ñ°üÎ§£¬²¢Çå³ıÒÑ±»°üÎ§µÄÆå×Ó
-        {
-            return 1; // ·µ»Ø1±íÊ¾µ±Ç°Íæ¼ÒÊ¤Àû
-        }
+        return Surround(row, col, currentPlayer);
     }
     else
     {
-        return 1; // Ó®Æå
+        return 1; // èµ¢æ£‹
     }
 }
 
-// Ö÷º¯Êı
+// ä¸»å‡½æ•°
 int main()
 {
-    int currentPlayer = 0;           // µ±Ç°Íæ¼ÒµÄË÷Òı£¬0±íÊ¾ºÚÆå£¬1±íÊ¾°×Æå
-    char colChar;                    // ÓÃ»§ÊäÈëµÄÁĞºÅ
-    int row;                         // ĞĞºÅ
-    int col;                         // ÁĞºÅ
-    int exemptFromDeath[2] = {1, 1}; // ÓÃÓÚ¿ª¾Ö±£»¤
+    int currentPlayer = 0;           // å½“å‰ç©å®¶çš„ç´¢å¼•ï¼Œ0è¡¨ç¤ºé»‘æ£‹ï¼Œ1è¡¨ç¤ºç™½æ£‹
+    char colChar;                    // ç”¨æˆ·è¾“å…¥çš„åˆ—å·
+    int row;                         // è¡Œå·
+    int col;                         // åˆ—å·
+    int exemptFromDeath[2] = {1, 1}; // ç”¨äºå¼€å±€ä¿æŠ¤
     while (1)
     {
-        init();       // ³õÊ¼»¯ÆåÅÌ
-        printBoard(); // ´òÓ¡ÆåÅÌ
-        printf("\nÇëÊäÈëºÚ°×Æå¶ÔÓ¦ÏÔÊ¾µÄ×Ö·û£¨²»ÒªÊ¹ÓÃÌØÊâ×Ö·û»òÏàÍ¬×Ö·û£©:");
+        init();       // åˆå§‹åŒ–æ£‹ç›˜
+        printBoard(); // æ‰“å°æ£‹ç›˜
+        printf("\nè¯·è¾“å…¥é»‘ç™½æ£‹å¯¹åº”æ˜¾ç¤ºçš„å­—ç¬¦ï¼ˆä¸è¦ä½¿ç”¨ç‰¹æ®Šå­—ç¬¦æˆ–ç›¸åŒå­—ç¬¦ï¼‰:");
         scanf(" %c%c", &players[0], &players[1]);
         while (1)
         {
-            printf("µ±Ç°Æì×Ó£º%c \nÇëÊäÈëÂä×Ó×ø±ê(ÁĞĞĞ): ", players[currentPlayer]); // ÌáÊ¾ÓÃ»§ÊäÈëÂä×ÓÎ»ÖÃ
-            scanf(" %c%d", &colChar, &row);                                          // ¶ÁÈ¡ÓÃ»§ÊäÈëµÄÂä×ÓÎ»ÖÃ
-            col = colChar - 'A';                                                     // ½«ÓÃ»§ÊäÈëµÄÁĞºÅ×ª»»ÎªÊı×éË÷Òı
+            printf("å½“å‰æ——å­ï¼š%c \nè¯·è¾“å…¥è½å­åæ ‡(åˆ—è¡Œ): ", players[currentPlayer]); // æç¤ºç”¨æˆ·è¾“å…¥è½å­ä½ç½®
+            scanf(" %c%d", &colChar, &row);                                          // è¯»å–ç”¨æˆ·è¾“å…¥çš„è½å­ä½ç½®
+            col = colChar - 'A';                                                     // å°†ç”¨æˆ·è¾“å…¥çš„åˆ—å·è½¬æ¢ä¸ºæ•°ç»„ç´¢å¼•
             if (colChar == 't' && row == 0)
             {
-                break; // ½áÊøÕâÒ»ÅÌ
+                break; // ç»“æŸè¿™ä¸€ç›˜
             }
             else if (row < 0 || row >= ROW || col < 0 || col >= COL || board[row][col] != ' ')
             {
-                printf("Âä×ÓÎŞĞ§£¬ÖØĞÂÂä×Ó£¡\n"); // Èç¹ûÓÃ»§ÊäÈëµÄÂä×ÓÎ»ÖÃÎŞĞ§£¬ÌáÊ¾ÓÃ»§ÖØĞÂÊäÈë
+                printf("è½å­æ— æ•ˆï¼Œé‡æ–°è½å­ï¼\n"); // å¦‚æœç”¨æˆ·è¾“å…¥çš„è½å­ä½ç½®æ— æ•ˆï¼Œæç¤ºç”¨æˆ·é‡æ–°è¾“å…¥
                 continue;
             }
-            makeMove(row, col, players[currentPlayer]);                            // ÔÚÖ¸¶¨Î»ÖÃÂä×Ó
-            printBoard();                                                          // ´òÓ¡ÆåÅÌ
-            if (checkWin(row, col, currentPlayer, exemptFromDeath[currentPlayer])) // ¼ì²éÊÇ·ñÓ®Æå
+            makeMove(row, col, players[currentPlayer]);                            // åœ¨æŒ‡å®šä½ç½®è½å­
+            printBoard();                                                          // æ‰“å°æ£‹ç›˜
+            if (checkWin(row, col, currentPlayer, exemptFromDeath[currentPlayer])) // æ£€æŸ¥æ˜¯å¦èµ¢æ£‹
             {
-                printf("Æå×Ó %c »ñÊ¤£¡\n", players[currentPlayer]); // Èç¹ûÓ®Æå£¬´òÓ¡Ó®¼ÒĞÅÏ¢
+                printf("æ£‹å­ %c è·èƒœï¼\n", players[currentPlayer]); // å¦‚æœèµ¢æ£‹ï¼Œæ‰“å°èµ¢å®¶ä¿¡æ¯
                 break;
             }
-            currentPlayer = (currentPlayer + 1) % 2; // ÇĞ»»Íæ¼Ò
-            exemptFromDeath[currentPlayer] = 0;      // ½â³ı¿ª¾Ö±£»¤
+            currentPlayer = (currentPlayer + 1) % 2; // åˆ‡æ¢ç©å®¶
+            exemptFromDeath[currentPlayer] = 0;      // è§£é™¤å¼€å±€ä¿æŠ¤
         }
-        printf("ÊÇ·ñ¿ªÊ¼ĞÂµÄÒ»¾Ö£¿ (y/n): "); // ÌáÊ¾ÓÃ»§ÊÇ·ñÔÙÍæÒ»´Î
+        printf("æ˜¯å¦å¼€å§‹æ–°çš„ä¸€å±€ï¼Ÿ (y/n): "); // æç¤ºç”¨æˆ·æ˜¯å¦å†ç©ä¸€æ¬¡
         char playAgain;
-        scanf(" %c", &playAgain); // ¶ÁÈ¡ÓÃ»§µÄÑ¡Ôñ
+        scanf(" %c", &playAgain); // è¯»å–ç”¨æˆ·çš„é€‰æ‹©
         if (playAgain == 'y')
         {
             continue;
         }
         else
         {
-            printf("ÓÎÏ·½áÊø£¬¸ĞĞ»ÄãµÄÓÎÍæ£¡\n"); // Èç¹ûÓÃ»§Ñ¡Ôñ²»ÔÙÍæ£¬½áÊøÓÎÏ·
+            printf("æ¸¸æˆç»“æŸï¼Œæ„Ÿè°¢ä½ çš„æ¸¸ç©ï¼\n"); // å¦‚æœç”¨æˆ·é€‰æ‹©ä¸å†ç©ï¼Œç»“æŸæ¸¸æˆ
             system("pause");
             break;
         }
