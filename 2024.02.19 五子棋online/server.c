@@ -16,77 +16,77 @@ int main(int argc, char *argv[]) {
     int recvSize;
 
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        printf("WinSock³õÊ¼»¯Ê§°Ü\n");
+        printf("WinSockåˆå§‹åŒ–å¤±è´¥\n");
         return 1;
     }
 
     serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (serverSocket == INVALID_SOCKET) {
-        printf("´´½¨socketÊ§°Ü\n");
+        printf("åˆ›å»ºsocketå¤±è´¥\n");
         WSACleanup();
         return 1;
     }
 
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_addr.s_addr = INADDR_ANY;
-    serverAddr.sin_port = htons(8080); // Ñ¡ÔñÒ»¸ö¶Ë¿Ú
+    serverAddr.sin_port = htons(8080); // é€‰æ‹©ä¸€ä¸ªç«¯å£
 
     if (bind(serverSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
-        printf("°ó¶¨Ê§°Ü\n");
+        printf("ç»‘å®šå¤±è´¥\n");
         closesocket(serverSocket);
         WSACleanup();
         return 1;
     }
 
     if (listen(serverSocket, 2) == SOCKET_ERROR) {
-        printf("¼àÌıÊ§°Ü\n");
+        printf("ç›‘å¬å¤±è´¥\n");
         closesocket(serverSocket);
         WSACleanup();
         return 1;
     }
 
-    printf("µÈ´ıÁ½¸ö¿Í»§¶ËÁ¬½Ó...\n");
+    printf("ç­‰å¾…ä¸¤ä¸ªå®¢æˆ·ç«¯è¿æ¥...\n");
     clientSocket1 = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientAddrSize);
     if (clientSocket1 == INVALID_SOCKET) {
-        printf("¿Í»§¶Ë1Á¬½ÓÊ§°Ü\n");
+        printf("å®¢æˆ·ç«¯1è¿æ¥å¤±è´¥\n");
         closesocket(serverSocket);
         WSACleanup();
         return 1;
     }
 
-    printf("¿Í»§¶Ë1ÒÑÁ¬½Ó\n");
+    printf("å®¢æˆ·ç«¯1å·²è¿æ¥\n");
 
     clientSocket2 = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientAddrSize);
     if (clientSocket2 == INVALID_SOCKET) {
-        printf("¿Í»§¶Ë2Á¬½ÓÊ§°Ü\n");
+        printf("å®¢æˆ·ç«¯2è¿æ¥å¤±è´¥\n");
         closesocket(clientSocket1);
         closesocket(serverSocket);
         WSACleanup();
         return 1;
     }
 
-    printf("¿Í»§¶Ë2ÒÑÁ¬½Ó\n");
+    printf("å®¢æˆ·ç«¯2å·²è¿æ¥\n");
 
-    // Í¨Öª¿Í»§¶ËË­ÊÇÏÈÊÖ
-    const char *firstPlayer = "ÄãÊÇÏÈÊÖ";
-    const char *secondPlayer = "ÄãÊÇºóÊÖ";
-    send(clientSocket1, secondPlayer, strlen(secondPlayer) + 1, 0); // ¼ÙÉèµÚÒ»¸öÁ¬½ÓµÄ¿Í»§¶ËºóÊÖ
-    send(clientSocket2, firstPlayer, strlen(firstPlayer) + 1, 0); // µÚ¶ş¸öÁ¬½ÓµÄ¿Í»§¶ËÏÈÊÖ
+    // é€šçŸ¥å®¢æˆ·ç«¯è°æ˜¯å…ˆæ‰‹
+    const char *firstPlayer = "ä½ æ˜¯å…ˆæ‰‹";
+    const char *secondPlayer = "ä½ æ˜¯åæ‰‹";
+    send(clientSocket1, secondPlayer, strlen(secondPlayer) + 1, 0); // å‡è®¾ç¬¬ä¸€ä¸ªè¿æ¥çš„å®¢æˆ·ç«¯åæ‰‹
+    send(clientSocket2, firstPlayer, strlen(firstPlayer) + 1, 0); // ç¬¬äºŒä¸ªè¿æ¥çš„å®¢æˆ·ç«¯å…ˆæ‰‹
 
-    // ÔÚÁ½¸ö¿Í»§¶ËÖ®¼ä×ª·¢ÏûÏ¢
+    // åœ¨ä¸¤ä¸ªå®¢æˆ·ç«¯ä¹‹é—´è½¬å‘æ¶ˆæ¯
     while (1) {
         memset(buffer, 0, MAX_BUF_SIZE);
-        recvSize = recv(clientSocket2, buffer, MAX_BUF_SIZE, 0); // ´ÓÏÈÊÖ¿Í»§¶Ë½ÓÊÕ
-        if (recvSize <= 0) break; // ¿Í»§¶Ë¶Ï¿ªÁ¬½Ó»ò³ö´í
-        send(clientSocket1, buffer, recvSize, 0); // ×ª·¢¸øºóÊÖ¿Í»§¶Ë
+        recvSize = recv(clientSocket2, buffer, MAX_BUF_SIZE, 0); // ä»å…ˆæ‰‹å®¢æˆ·ç«¯æ¥æ”¶
+        if (recvSize <= 0) break; // å®¢æˆ·ç«¯æ–­å¼€è¿æ¥æˆ–å‡ºé”™
+        send(clientSocket1, buffer, recvSize, 0); // è½¬å‘ç»™åæ‰‹å®¢æˆ·ç«¯
 
         memset(buffer, 0, MAX_BUF_SIZE);
-        recvSize = recv(clientSocket1, buffer, MAX_BUF_SIZE, 0); // ´ÓºóÊÖ¿Í»§¶Ë½ÓÊÕ
-        if (recvSize <= 0) break; // ¿Í»§¶Ë¶Ï¿ªÁ¬½Ó»ò³ö´í
-        send(clientSocket2, buffer, recvSize, 0); // ×ª·¢¸øÏÈÊÖ¿Í»§¶Ë
+        recvSize = recv(clientSocket1, buffer, MAX_BUF_SIZE, 0); // ä»åæ‰‹å®¢æˆ·ç«¯æ¥æ”¶
+        if (recvSize <= 0) break; // å®¢æˆ·ç«¯æ–­å¼€è¿æ¥æˆ–å‡ºé”™
+        send(clientSocket2, buffer, recvSize, 0); // è½¬å‘ç»™å…ˆæ‰‹å®¢æˆ·ç«¯
     }
 
-    // ÇåÀí
+    // æ¸…ç†
     closesocket(clientSocket1);
     closesocket(clientSocket2);
     closesocket(serverSocket);
