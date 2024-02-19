@@ -17,4 +17,5 @@ P2P.c
 整个代码均使用AI编写，P2P客户端由 **Gemini 1.0 Pro** 和 **GPT3.5** 编写，client和server服务端由 **GPT-4.0** 编写。
 
 #### 视频演示
+不要攻击我的服务器！！！
 https://github.com/LoosePrince/C-lang/assets/107794785/e47ee824-f2e4-4df4-9fc4-ad8e21b62689
