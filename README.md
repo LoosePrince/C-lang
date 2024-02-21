@@ -5,7 +5,7 @@
 | ---- | -- | ---- | -- | -------  |
 | 1 | 五子棋 | 2024年01月16日 | [v1.1](https://github.com/LoosePrince/C-lang/releases/download/%E4%BA%94%E5%AD%90%E6%A3%8B1.1/1.1.exe) | [v1.0](https://github.com/LoosePrince/C-lang/releases/download/%E4%BA%94%E5%AD%90%E6%A3%8B1.0/1.0.exe) |
 | 2 | 围棋 | 2024年01月20日 | [v1.0](https://github.com/LoosePrince/C-lang/releases/download/%E5%9B%B4%E6%A3%8B1.0/1.0.exe) | - |
-| 3 | 五子棋online | 2024年02月19日 | [client.exe](https://github.com/LoosePrince/C-lang/releases/download/%E4%BA%94%E5%AD%90%E6%A3%8B2.0/client.exe) [server.exe](https://github.com/LoosePrince/C-lang/releases/download/%E4%BA%94%E5%AD%90%E6%A3%8B2.0/server.exe) [P2P.exe](https://github.com/LoosePrince/C-lang/releases/download/%E4%BA%94%E5%AD%90%E6%A3%8B2.0/P2P.exe) | - |
+| 3 | 五子棋online | 2024年02月19日 | [v2.1](https://github.com/LoosePrince/C-lang/releases/tag/%E4%BA%94%E5%AD%90%E6%A3%8B2.1) | [v2.0](https://github.com/LoosePrince/C-lang/releases/tag/%E4%BA%94%E5%AD%90%E6%A3%8B2.0) |
 
 ## 交流
 我的个人网站：[树梢的小窝](https://xzt.plus/)
