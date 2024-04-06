@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <string.h>
 #include <time.h>
 // #include "test.h"
 #define ROW 9 // 定义棋盘的行数
